@@ -18,12 +18,11 @@ object Lists {
     }
   }
 
-  def compress[T](list: List[T]): List[T] = {
+  def compress[T](list: List[T]): List[T] =
     List(list.head) ++ list.tail
       .zip(list.dropRight(1))
       .filter{ case (ths, lst) => ths != lst }
       .map(_._1)
-  }
 
   def pack[T](list: List[T]): List[List[T]] = {
     // TODO - not happy with this one, too much mutability
@@ -42,19 +41,35 @@ object Lists {
     output
   }
 
-  def encode[T](list: List[T]): List[(Int, T)] = {
-    pack(list).map{ sublist =>
-      (sublist.length, sublist.head)
-    }
-  }
+  def encode[T](list: List[T]): List[(Int, T)] =
+    pack(list)
+      .map{ sublist => (sublist.length, sublist.head) }
 
-  def encodeModified[T](list: List[T]): List[Any] = {
+  def encodeModified[T](list: List[T]): List[Any] =
     encode(list)
       .map(x => if(x._1 > 1) x else x._2)
-  }
 
-  def decode[T](encodedList: List[(Int, T)]): List[T] = {
+  def decode[T](encodedList: List[(Int, T)]): List[T] =
     encodedList
       .flatMap { case (count, value) => List.fill(count)(value) }
+
+  def duplicate[T](list: List[T]): List[T] =
+    list.flatMap(List.fill(2)(_))
+
+  def duplicateN[T](n: Int, list: List[T]): List[T] =
+    list.flatMap(List.fill(n)(_))
+
+  def drop[T](n: Int, list: List[T]): List[T] = {
+    list
+      .zip(Stream.from(1))
+      .filter{ case (value, i) => i % n != 0 }
+      .map(_._1)
   }
+
+  def split[T](n: Int, list: List[T]): (List[T], List[T]) =
+    (list.slice(0, n), list.slice(n, list.length))
+
+  def slice[T](i: Int, k: Int, list: List[T]): List[T] =
+    list.slice(i, k)
+
 }

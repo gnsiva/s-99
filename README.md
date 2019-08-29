@@ -22,11 +22,11 @@ Dan Juu has done most of them. He has already written the tests which is the mos
 - [X] 11
 - [X] 12
 - [ ] 13 still to do (encodeDirect)
-- [ ] 14
-- [ ] 15
-- [ ] 16
-- [ ] 17
-- [ ] 18
+- [X] 14
+- [X] 15
+- [X] 16
+- [X] 17
+- [X] 18
 - [ ] 19
 - [ ] 20
 - [ ] 21
