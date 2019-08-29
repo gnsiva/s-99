@@ -27,7 +27,7 @@ Dan Juu has done most of them. He has already written the tests which is the mos
 - [X] 16
 - [X] 17
 - [X] 18
-- [ ] 19
+- [X] 19 rotating list problem
 - [ ] 20
 - [ ] 21
 - [ ] 22

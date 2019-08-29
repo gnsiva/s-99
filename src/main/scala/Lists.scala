@@ -59,12 +59,11 @@ object Lists {
   def duplicateN[T](n: Int, list: List[T]): List[T] =
     list.flatMap(List.fill(n)(_))
 
-  def drop[T](n: Int, list: List[T]): List[T] = {
+  def drop[T](n: Int, list: List[T]): List[T] =
     list
       .zip(Stream.from(1))
       .filter{ case (value, i) => i % n != 0 }
       .map(_._1)
-  }
 
   def split[T](n: Int, list: List[T]): (List[T], List[T]) =
     (list.slice(0, n), list.slice(n, list.length))
@@ -72,4 +71,14 @@ object Lists {
   def slice[T](i: Int, k: Int, list: List[T]): List[T] =
     list.slice(i, k)
 
+  def rotate[T](n: Int, list: List[T]): List[T] = {
+    val len = list.length
+    (n until (n + len))
+      .map(x =>
+        if (x < 0) x + len
+        else if (x >= len) x - len
+        else x
+      ).map(list(_))
+        .toList
+  }
 }
