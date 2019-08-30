@@ -21,19 +21,19 @@ Dan Juu has done most of them. He has already written the tests which is the mos
 - [X] 10
 - [X] 11
 - [X] 12
-- [ ] 13 still to do (encodeDirect)
+- [ ] 13 test missing (encodeDirect)
 - [X] 14
 - [X] 15
 - [X] 16
 - [X] 17
 - [X] 18
 - [X] 19 rotating list problem
-- [ ] 20
-- [ ] 21
-- [ ] 22
-- [ ] 23
-- [ ] 24
-- [ ] 25
-- [ ] 26
-- [ ] 27
-- [ ] 28
+- [X] 20
+- [X] 21
+- [X] 22 would like to retry with recursion
+- [ ] 23 Test missing (random selection)
+- [ ] 24 Test missing (random selection)
+- [ ] 25 Test missing (random selection)
+- [ ] 26 Come back after more recursion practice
+- [ ] 27 Come back after more recursion practice
+- [X] 28 

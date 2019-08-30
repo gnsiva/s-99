@@ -93,18 +93,18 @@ class ListsSuite extends FunSuite {
     assert(rotate(-2, List('a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i, 'j, 'k)) == List('j, 'k, 'a, 'b, 'c, 'd, 'e, 'f, 'g, 'h, 'i))
   }
 
-//  test("P20 -- removeAt"){
-//    assert(removeAt(1, List('a, 'b, 'c, 'd)) == (List('a, 'c, 'd),'b))
-//  }
-//
-//  test("P21 -- insertAt"){
-//    assert(insertAt('new, 1, List('a, 'b, 'c, 'd)) == List('a, 'new, 'b, 'c, 'd))
-//  }
-//
-//  test("P22 -- range"){
-//    assert(range(4, 9) == List(4, 5, 6, 7, 8, 9))
-//  }
-//
+  test("P20 -- removeAt"){
+    assert(removeAt(1, List('a, 'b, 'c, 'd)) == (List('a, 'c, 'd),'b))
+  }
+
+  test("P21 -- insertAt"){
+    assert(insertAt('new, 1, List('a, 'b, 'c, 'd)) == List('a, 'new, 'b, 'c, 'd))
+  }
+
+  test("P22 -- range"){
+    assert(range(4, 9) == List(4, 5, 6, 7, 8, 9))
+  }
+
 //  test("P23 -- randomSelect"){
 //    //TODO: come up with a method of testing random selection
 //    //Note that the current example on http://aperiodic.net/phil/scala/s-99/ is wrong
@@ -141,7 +141,18 @@ class ListsSuite extends FunSuite {
 //    assert(1 == 0) //TODO: can't think of a non-hacky way to do this atm.
 //  }
 //
-//  test("P28 -- sort list based on length"){
-//    assert(lsort(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o))) == List(List('o), List('d, 'e), List('d, 'e), List('m, 'n), List('a, 'b, 'c), List('f, 'g, 'h), List('i, 'j, 'k, 'l)))
-//  }
+  test("P28a -- sort list based on length"){
+    assert(lsort(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))
+      == List(List('o), List('d, 'e), List('d, 'e), List('m, 'n), List('a, 'b, 'c), List('f, 'g, 'h), List('i, 'j, 'k, 'l)))
+  }
+
+  test("P28b -- delete dev test"){
+    val out = lsortFreq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))
+    println(out)
+  }
+
+  test("P28b -- sort list based on length frequency (frequent at end)"){
+    assert(lsortFreq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o)))
+      == List(List('i, 'j, 'k, 'l), List('o), List('a, 'b, 'c), List('f, 'g, 'h), List('d, 'e), List('d, 'e), List('m, 'n)))
+  }
 }

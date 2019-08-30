@@ -81,4 +81,51 @@ object Lists {
       ).map(list(_))
         .toList
   }
+
+  def removeAt[T](k: Int, list: List[T]): (List[T], T) =
+    (list.indices
+      .filter(_ != k)
+      .map(list(_)).toList,
+    list(k))
+
+  def insertAt[T](newItem: T, k: Int, list: List[T]): List[T] =
+    list.slice(0, k) ++ List(newItem) ++ list.slice(k, list.length)
+
+  def range(start: Int, end: Int): List[Int] = (start to end).toList
+
+  def randomSelect[T](n: Int, list: List[T]): List[T] = {
+    // TODO - test missing
+    val rng = new scala.util.Random(10)
+    (1 to n)
+      .map(_ => rng.nextInt(list.length))
+      .map(list)
+      .toList
+  }
+
+//  def combinations[T](k: Int, list: List[T]): List[List[T]] = {
+
+  def lsort[T](list: List[List[T]]): List[List[T]] =
+    list
+      .map(x => (x.length, x))
+      .sortBy(_._1)
+      .map(_._2)
+
+  def lsortFreq[T](list: List[List[T]]): List[List[T]] = {
+    val lengthFrequencyOrder = list
+      .map(x => (x.length, 1))
+      .groupBy(_._1)
+      .mapValues(_.length)
+      .toList
+      .sortBy(_._2)
+      .map(_._1)
+
+    val listWithLengths = list.map(x => (x, x.length))
+
+    lengthFrequencyOrder
+      .flatMap{ len =>
+        listWithLengths
+          .filter(_._2 == len)
+          .map(_._1)
+      }
+  }
 }
