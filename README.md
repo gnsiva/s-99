@@ -51,7 +51,7 @@ Dan Luu has done most of them. He has already written the tests which is the mos
 - [ ] 37
 - [ ] 38 test missing
 - [X] 39
-- [ ] 40
+- [X] 40
 - [ ] 41
 - 42 There is no question for this
 - 43 There is no question for this

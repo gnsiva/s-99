@@ -59,11 +59,11 @@ class AritchmeticSuite extends FunSuite {
   test("P39 - listPrimesinRange"){
     assert(listPrimesinRange(7 to 31) == List(7, 11, 13, 17, 19, 23, 29, 31))
   }
-//
-//  test("P40 - goldbach"){
-//    assert(28.goldbach == (5,23) || 28.goldbach == (23,5))
-//  }
-//
+
+  test("P40 - goldbach"){
+    assert(28.goldbach == (5, 23) || 28.goldbach == (23, 5))
+  }
+
 //  test("P41 - print goldbach list"){
 //    //TODO: come up with a test for the values and not the print statement
 //  }

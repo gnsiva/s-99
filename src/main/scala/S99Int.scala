@@ -21,6 +21,8 @@ class S99Int(val start: Int) {
       .mapValues(_.size)
       .toList
       .sortBy(_._1)
+
+  def goldbach: (Int, Int) = S99Int.goldbach(start)
 }
 
 object S99Int {
@@ -71,6 +73,20 @@ object S99Int {
       primesIterator.next()
       listPrimesinRange(r)
     }
+  }
+
+  def goldbach(v: Int): (Int, Int) = {
+    v.isPrime
+    @scala.annotation.tailrec
+    def rec(i: Int, j: Int): (Int, Int) = {
+      val sum = primes(i) + primes(j)
+
+      if (v == sum) (primes(i), primes(j))
+      else if (sum > v) rec(0, j - 1)
+      else rec(i + 1, j)
+    }
+
+    rec(i = 0, j = primes.count(_ < v) - 1)
   }
 }
 
