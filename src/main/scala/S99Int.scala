@@ -34,7 +34,7 @@ object S99Int {
     else
       gcd(b, a % b)
 
-  private val primeGenerator = new PrimeGenerator
+  private val primeGenerator = new Primes
   import primeGenerator._
 
   def isPrime(v: Int): Boolean = {
@@ -62,10 +62,20 @@ object S99Int {
         primeFactors(v, primesPosition = primesPosition + 1)
     }
   }
+
+  @scala.annotation.tailrec
+  def listPrimesinRange(r: Range): List[Int] = {
+    if (primes.last > r.last)
+      primes.filter(x => r.head <= x && x <= r.last)
+    else {
+      primesIterator.next()
+      listPrimesinRange(r)
+    }
+  }
 }
 
 
-class PrimeGenerator {
+class Primes {
   // could have used hashset for earlier questions but primefactors needs them in order
   var primes: List[Int] = List(1, 2, 3)
 
