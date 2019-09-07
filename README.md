@@ -42,12 +42,12 @@ Dan Luu has done most of them. He has already written the tests which is the mos
 - 30 There is no question for this
 
 ### Arithmetic
-- [ ] 31
-- [ ] 32
-- [ ] 33
-- [ ] 34
-- [ ] 35
-- [ ] 36
+- [X] 31
+- [X] 32
+- [X] 33
+- [X] 34
+- [X] 35
+- [X] 36
 - [ ] 37
 - [ ] 38
 - [ ] 39
