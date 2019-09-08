@@ -1,3 +1,4 @@
+import scala.math.pow
 
 
 class S99Int(val start: Int) {
@@ -8,10 +9,8 @@ class S99Int(val start: Int) {
   def isCoprimeTo(b: Int): Boolean = gcd(start, b) == 1
 
   def totient: Int =
-    if (start == 1)
-      1
-    else
-      (1 until start).count(isCoprimeTo)
+    if (start == 1) 1
+    else (1 until start).count(isCoprimeTo)
 
   def primeFactors: List[Int] = S99Int.primeFactors(start)
 
@@ -23,6 +22,16 @@ class S99Int(val start: Int) {
       .sortBy(_._1)
 
   def goldbach: (Int, Int) = S99Int.goldbach(start)
+
+  def phi: Int = phi(primeFactorMultiplicity)
+
+  def phi(primeFactorCounts: List[(Int, Int)]): Int =
+    primeFactorCounts
+      .foldLeft(1) { case (total, primeCount) =>
+        primeCount match {
+          case (p, m) => total * (p - 1) * pow(p, m - 1).toInt
+        }
+      }
 }
 
 object S99Int {
@@ -31,10 +40,8 @@ object S99Int {
   // using the Euclidean algorithm
   @scala.annotation.tailrec
   def gcd(a: Int, b: Int): Int =
-    if (b == 0)
-      a
-    else
-      gcd(b, a % b)
+    if (b == 0) a
+    else gcd(b, a % b)
 
   private val primeGenerator = new Primes
   import primeGenerator._

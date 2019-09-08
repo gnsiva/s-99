@@ -1,7 +1,7 @@
 import org.scalatest.FunSuite
 import Utils._
 
-class AritchmeticSuite extends FunSuite {
+class ArithmeticSuite extends FunSuite {
   import S99Int._
 
   test("P31 - isPrime"){
@@ -47,15 +47,24 @@ class AritchmeticSuite extends FunSuite {
     assert(315.primeFactorMultiplicity == List((3,2), (5,1), (7,1)))
   }
 
-//  test("P37 - phi"){
-//    assert(10.phi == 4)
-//  }
-//
-//  test("P38 - comparison of phi and totient"){
-//    //It's not really meaningful to write a simple test for a benchmark
-//    //and the benchmark isn't sophisticated enough for a complex test
-//  }
-//
+  test("P37 - phi"){
+    assert(10.phi == 4)
+  }
+
+  test("P38 - comparison of phi and totient"){
+    // The question says, if the prime factors of a number is known, then phi is much more efficient
+    // To test this the prime factors are pre-calculated
+    val v = 10000
+    val primeFactorCounts = v.primeFactorMultiplicity
+    println(primeFactorCounts)
+
+    val (totientResult, totientTime) = time(v.totient)
+    val (phiResult, phiTime) = time(v.phi(primeFactorCounts))
+
+    assert(totientResult == phiResult)
+    assert(totientTime > phiTime * 2) // at least twice as fast
+  }
+
   test("P39 - listPrimesinRange"){
     assert(listPrimesinRange(7 to 31) == List(7, 11, 13, 17, 19, 23, 29, 31))
   }
@@ -77,7 +86,7 @@ class AritchmeticSuite extends FunSuite {
 
   test("P41b - goldbachListLimited") {
     // The question asks to print them, I am going to return tuples instead
-    assert(goldbachListLimited(2 to 2000, 50) ==
+    assert(goldbachListLimited(1 to 2000, 50) ==
       List((992, 73, 919), (1382, 61, 1321), (1856,67,1789), (1928,61,1867)))
   }
 }
