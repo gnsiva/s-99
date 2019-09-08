@@ -64,8 +64,20 @@ class AritchmeticSuite extends FunSuite {
     assert(28.goldbach == (5, 23) || 28.goldbach == (23, 5))
   }
 
+
 //  test("P41 - print goldbach list"){
 //    //TODO: come up with a test for the values and not the print statement
 //  }
 
+  test("P41a - goldbachList") {
+    // The question asks to print them, I am going to return tuples instead
+    assert(goldbachList(9 to 20) ==
+      List((10, 3, 7), (12, 5, 7), (14, 3, 11), (16, 3, 13), (18, 5, 13), (20, 3, 17)))
+  }
+
+  test("P41b - goldbachListLimited") {
+    // The question asks to print them, I am going to return tuples instead
+    assert(goldbachListLimited(2 to 2000, 50) ==
+      List((992, 73, 919), (1382, 61, 1321), (1856,67,1789), (1928,61,1867)))
+  }
 }

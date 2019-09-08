@@ -78,15 +78,27 @@ object S99Int {
   def goldbach(v: Int): (Int, Int) = {
     v.isPrime
     @scala.annotation.tailrec
-    def rec(i: Int, j: Int): (Int, Int) = {
-      val sum = primes(i) + primes(j)
+    def rec(vs: List[Int], i: Int = 0): (Int, Int) = {
+      val sum = vs(i) + vs.last
 
-      if (v == sum) (primes(i), primes(j))
-      else if (sum > v) rec(0, j - 1)
-      else rec(i + 1, j)
+      if (v == sum) (vs(i), vs.last)
+      else if (sum > v) rec(vs.dropRight(1))
+      else rec(vs, i + 1)
     }
+    rec(primes.tail)
+  }
 
-    rec(i = 0, j = primes.count(_ < v) - 1)
+  def goldbachList(r: Range): List[(Int, Int, Int)] = {
+    if (r.isEmpty) List()
+    else if (r.head % 2 != 0 || r.head <= 2) goldbachList(r.tail)
+    else {
+      val g = goldbach(r.head)
+      List((r.head, g._1, g._2)) ++ goldbachList(r.tail)
+    }
+  }
+
+  def goldbachListLimited(r: Range, minPrimeValue: Int): List[(Int, Int, Int)] = {
+    goldbachList(r).filter(x => (x._2 min x._3)> minPrimeValue)
   }
 }
 
